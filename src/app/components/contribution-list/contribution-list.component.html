@@ -1,0 +1,153 @@
+
+<mdb-card class="text-white mb-3" bgColor="bg-info" style="max-width: 20rem;margin-right: 70px;margin-top: 100px;">
+  <mdb-card-header>
+    <h5 style="margin: auto;">התרמות לחודש זה</h5>
+  </mdb-card-header>
+  <mdb-card-body>
+    <mdb-card-title>
+    </mdb-card-title>
+    <p class="text-white" style="font-size: 30px;">{{sum_for_month | currency: 'ILS'}}</p>
+  </mdb-card-body>
+</mdb-card>
+
+
+<table mdbTable style="direction: rtl;text-align: right; width: 90%; margin: auto;">
+  <thead class="unique-color-dark white-text">
+    <tr>
+<th>מספר תרומה</th>
+      <th>סכום תרומה</th>
+            <th> תאריך תרומה </th>
+      <th>שעת תרומה</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample" mdbWavesEffect mdbTableCol
+      *ngFor="let item of contributionList">
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.sum_contribution}}</td>
+      <td>{{item.dateC|date:'dd/MM/yyyy'}}</td>
+      <td>{{item.dateC|date:'HH:mm'}}</td>
+      <td>
+      </td>
+      <td>
+        <span class="table-remove">
+          <button (click)="ShowDetailsTelephonist(item.idTelephonistCompany)" (click)="frameTelephonist.show()"
+            type="button" mdbBtn color="default" rounded="true" size="sm" class="my-0">הצג פרטי טלפנית
+          </button>
+        </span>
+      </td>
+      <td>
+        <span class="table-remove">
+          <button (click)="showDetailsPhone(item.idPhone)" (click)="framePhone.show()" type="button" mdbBtn
+            color="default" rounded="true" size="sm" class="my-0">הצג פרטי תורם
+          </button>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+<div mdbModal #frameTelephonist="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fluid modal-side modal-top-left" role="document">
+    <div class="modal-content" style="width: 1000px; margin: auto;">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 style="margin: auto;" class="modal-title" id="myModalLabel">פרטי טלפנית {{telephonist.name}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frameTelephonist.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+
+        <table mdbTable style="direction: rtl;text-align: right;">
+          <thead class="unique-color-dark white-text">
+            <tr>
+              <th>שם מלא</th>
+              <th>מיל </th>
+              <th>טלפון</th>
+              <th>תאריך לידה </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row">{{telephonist.name}}</td>
+              <th>{{telephonist.mail}}</th>
+              <td>{{telephonist.telephone}}</td>
+              <td>{{telephonist.dateBirth|date:'dd/MM/yyyy'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect
+          data-dismiss="modal" (click)="frameTelephonist.hide()">סגור</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div mdbModal #framePhone="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fluid modal-side modal-top-left" role="document">
+    <div class="modal-content" style="width: 1000px; margin: auto;">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel"> פרטי תורם{{phone.lastName}} {{phone.firstName}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="framePhone.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <table mdbTable style="direction: rtl;text-align: right;">
+          <thead class="unique-color-dark white-text">
+            <tr>
+              <th> מספר תורם </th>
+              <th> שם פרטי</th>
+              <th> שם משפחה</th>
+              <th> מספר טלפון </th>
+              <th> תעודת זהות</th>
+              <th> כתובת</th>
+              <th>עיר</th>
+              <th> מייל </th>
+              <th> תאריך יצירה</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{phone.id}}</th>
+              <th scope="row">{{phone.firstName}}</th>
+              <th scope="row">{{phone.lastName}}</th>
+              <td>{{phone.phone}}</td>
+              <td>{{phone.tz}}</td>
+              <td>{{phone.address }}</td>
+              <td>{{phone.city }}</td>
+              <td>{{phone.mail}}</td>
+              <td>{{phone.creationDate|date:'dd/MM/yyyy'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect
+          data-dismiss="modal" (click)="framePhone.hide()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

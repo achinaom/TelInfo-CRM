@@ -1,0 +1,207 @@
+@media (max-width: 767px) {
+    .column-1,
+    .column-2 {
+        width: 100%;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .column-1 {
+        width: 50%;
+    }
+    .column-2 {
+        width: 100%;
+    }
+}
+@media (min-width: 992px) {
+    .column-2,
+    .column-1 {
+        width: 33%;
+    }
+}
+
+.div1{
+    background-color: #1e3d59;
+}
+
+.backg1{
+    background-color: #f5f0e1;
+}.backg2{
+    background-color: #1e3d59;
+}.backg3{
+    background-color: #e2c275;
+}.backg4{
+    background-color: #c36a2d;
+}
+
+/* עליום תמונות */
+
+*{
+    margin: 0;
+    padding: 0;
+  }
+  
+  body{
+    background-color: #fe7263;
+  }
+  
+  #x1{background-image: url("C:\Users\1\Downloads\istockphoto-1002118226-612x612.jpg");}
+  #x2{background-image: url("C:\Users\1\Downloads\istockphoto-888090254-612x612.jpg");}
+  #x3{background-image: url("C:\Users\1\Downloads\istockphoto-1259086543-612x612.jpg");}
+  #x4{background-image: url("C:\Users\1\Downloads\istockphoto-1131267600-612x612.jpg");}
+  #x5{background-image: url("C:\Users\1\Downloads\istockphoto-1133471979-612x612.jpg");}
+  
+  
+  .main{
+    height: 100%;
+    width: 100%;
+  }
+  
+  .one{
+    height: 1080px; /*Here should be 100% value but it doesn't work and i know why*/
+    width: 20%;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    background-position: center;    
+  }
+  
+  img.menuImg{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /*cards*/
+  .title
+  {
+    padding: 30px 0;
+    text-align: center;
+    font-family: "Arial", sans-serif;
+    font-size: 40px;
+    background-color: rgba(0,0,0,0.6);
+    color: #fff;
+  }
+  
+  .info
+  {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 50px 30px 0px;
+    font-family: "Arial", sans-serif;
+  }
+  
+  .infoTitle
+  {
+    font-size: 20px;
+    padding: 30px 0;
+  }
+  
+  .infoText
+  {
+    font-size: 16px;
+  }
+  
+  .more
+  {
+    padding: 30px 0 10px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+/* Navigation*/
+.navbar,
+.grey-new {
+  background-color: #667490; }
+
+.scrolling-navbar {
+  transition: background .5s ease-in-out, padding .5s ease-in-out; }
+
+footer.page-footer {
+  background-color: #667490; }
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: #667490; } }
+
+/* Necessary for full page carousel*/
+html,
+body,
+header,
+header .carousel .carousel-inner .carousel-item > .view {
+  height: 100%; }
+
+@media (min-width: 600px) and (max-width: 850px) {
+  html,
+  body,
+  header,
+  header .carousel .carousel-inner .carousel-item > .view {
+    height: 650px; } }
+
+/* Carousel*/
+.carousel,
+.carousel-item,
+.carousel-item.active {
+  height: 100%; }
+
+.carousel-inner {
+  height: 100%; }
+
+.carousel-item:nth-child(1) {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-color: #eadca6; }
+
+.carousel-item:nth-child(2) {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-color: #e2c275; }
+
+.carousel-item:nth-child(3) {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-color: #c36a2d; }
+
+@media (min-width: 1020px) {
+  .carousel .card.card-bottom {
+    bottom: 0;
+    position: absolute; }
+    .carousel .card.card-bottom .card-body {
+      background-color: rgba(234, 220, 166, 0.4); } }
+
+.carousel .card.card-bottom .card-body {
+  background-color: rgba(234, 220, 166, 0.4); }
+
+.btn.btn-wood {
+  background-color: #C36A2D;
+  color: #fff; }
+
+.btn-lg-font {
+  font-size: 1rem;
+  padding-bottom: .6rem; }
+
+.grid {
+  margin-left: -15px;
+  margin-right: -15px; }
+
+.contact-section .contact {
+  background-color: #C36A2D; }
+  .contact-section .contact .fas,
+  .contact-section .contact .fab {
+    color: #fff; }
+
+.page-footer input::-webkit-input-placeholder {
+  color: #fff; }
+
+.page-footer input:-ms-input-placeholder {
+  color: #fff; }
+
+.page-footer input::-ms-input-placeholder {
+  color: #fff; }
+
+.page-footer input::placeholder {
+  color: #fff; }

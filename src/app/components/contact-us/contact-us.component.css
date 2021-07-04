@@ -1,0 +1,100 @@
+.properties{
+    color: gray;
+    font-size: 20px;
+    
+}
+/* Navigation*/
+.navbar,
+.grey-new {
+  background-color: #667490; }
+  
+.scrolling-navbar {
+  transition: background .5s ease-in-out, padding .5s ease-in-out; }
+
+footer.page-footer {
+  background-color: #667490; }
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: #667490; } }
+
+/* Necessary for full page carousel*/
+html,
+body,
+header,
+header .carousel .carousel-inner .carousel-item > .view {
+  height: 100%; }
+
+@media (min-width: 600px) and (max-width: 850px) {
+  html,
+  body,
+  header,
+  header .carousel .carousel-inner .carousel-item > .view {
+    height: 650px; } }
+
+/* Carousel*/
+.carousel,
+.carousel-item,
+.carousel-item.active {
+  height: 100%; }
+
+.carousel-inner {
+  height: 100%; }
+
+.carousel-item:nth-child(1) {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-color: #eadca6; }
+
+.carousel-item:nth-child(2) {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-color: #e2c275; }
+
+.carousel-item:nth-child(3) {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-color: #c36a2d; }
+
+@media (min-width: 1020px) {
+  .carousel .card.card-bottom {
+    bottom: 0;
+    position: absolute; }
+    .carousel .card.card-bottom .card-body {
+      background-color: rgba(234, 220, 166, 0.4); } }
+
+.carousel .card.card-bottom .card-body {
+  background-color: rgba(234, 220, 166, 0.4); }
+
+.btn.btn-wood {
+  background-color: #C36A2D;
+  color: #fff; }
+
+.btn-lg-font {
+  font-size: 1rem;
+  padding-bottom: .6rem; }
+
+.grid {
+  margin-left: -15px;
+  margin-right: -15px; }
+
+.contact-section .contact {
+  background-color: #C36A2D; }
+  .contact-section .contact .fas,
+  .contact-section .contact .fab {
+    color: #fff; }
+
+.page-footer input::-webkit-input-placeholder {
+  color: #fff; }
+
+.page-footer input:-ms-input-placeholder {
+  color: #fff; }
+
+.page-footer input::-ms-input-placeholder {
+  color: #fff; }
+
+.page-footer input::placeholder {
+  color: #fff; }

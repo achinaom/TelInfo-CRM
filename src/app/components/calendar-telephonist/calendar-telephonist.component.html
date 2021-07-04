@@ -1,0 +1,136 @@
+<body style="direction: rtl; width: 1100px;">
+  <!-- Editable table -->
+  <div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">{{date1|date:'dd/MM/yyyy'}}</h3>
+    <br>
+    <div class="input-group input-group-sm mb-3" style="width: 400px; text-align: center; margin: auto;">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">בחר תאריך להצגת השיחות באותו יום</span>
+      </div>
+      <input type="date" id="input" [(ngModel)]="date1" class="form-control" mdbInput>
+    </div>
+    <button (click)="showCalls()" type="button" mdbBtn (click)="showCalls()" color="secondary"
+      style="width:150px; margin: auto;" mdbWavesEffect>הצג שיחות</button>
+    <div class="card-body">
+      <div id="table" class="table-editable">
+        <div *ngIf="!degel1" class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <table *ngIf="degel1" class="table table-bordered table-responsive-md table-striped text-center">
+          <tr>
+            <th class="text-center">שם</th>
+            <th class="text-center">טלפון</th>
+            <th class="text-center">שעת שיחה</th>
+            <th class="text-center">סוג</th>
+            <th class="text-center">סטטוס</th>
+            <th class="text-center">בוצעה</th>
+          </tr>
+          <tr *ngFor="let item of call_for_today_list;">
+            <td>
+              <span>{{item.leadFirstName}}</span>
+            </td>
+            <td>
+              <span>{{item.leadPhoneNumber}}</span>
+            </td>
+            <td>
+              <span>{{item.timeCall|date:'HH:mm' }}</span>
+            </td>
+            <td>
+              <span>{{item.leadType|showTypePhone:item.leadType }}</span>
+            </td>
+            <td>
+              <span>{{item.leadStatus|showStatusPhone:item.leadStatus }}</span>
+            </td>
+            <td>
+              <span>{{item.done|showCallsDone:item.done}}</span>
+            </td>
+            <td>
+              <span class="table-remove">
+                <button type="button" mdbBtn color="primary" rounded="true" size="sm" class="my-0"
+                  (click)="frame.show()" (click)="putid(item.idCall)">מחק</button>
+              </span>
+            </td>
+            <td>
+              <span class="table-remove">
+                <button [routerLink]="['/lead',item.leadId,item.idCall]" type="button" mdbBtn color="default"
+                  rounded="true" size="sm" class="my-0">הצג פרטים</button>
+              </span>
+            </td>
+            <td>
+              <span class="table-remove">
+                <button type="button" mdbBtn color="default" rounded="true" (click)="updateC(item)"
+                  (click)="frame1.show()" size="sm" class="my-0">עדכון</button>
+              </span>
+            </td>
+
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Editable table -->
+  <!-- לבדיקה אם בטוח שרוצה למחוק -->
+  <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+      <!--Content-->
+      <div class="modal-content text-center">
+        <!--Header-->
+        <div class="modal-header d-flex justify-content-center">
+          <p class="heading">אתה בטוח שברצונך למחוק שיחה זו לצמיתות?</p>
+        </div>
+
+        <!--Body-->
+        <div class="modal-body">
+          <mdb-icon fas icon="times" size="4x" class="animated rotateIn"></mdb-icon>
+        </div>
+        <!--Footer-->
+        <div class="modal-footer justify-content-center">
+          <a mdbBtn color="danger" outline="true" class="waves-effect" mdbWavesEffect (click)="remove()"
+            (click)="frame.hide()">מחק</a>
+          <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect data-dismiss="modal"
+            (click)="update_choosing_id()" (click)="frame.hide()">ביטול</a>
+        </div>
+      </div>
+      <!--/.Content-->
+    </div>
+  </div>
+</body>
+<div mdbModal #frame1="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-primary" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p style="margin-right: 30px;" class="heading lead">עדכון שיחה </p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame1.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body" style="text-align: right;">
+        <div class="input-group input-group-sm mb-3" style="width: 400px; text-align: center; margin: auto;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">בחר תאריך שיחה</span>
+          </div>
+          <input type="date" min="2021-06-22" id="input" [(ngModel)]="date3" class="form-control" mdbInput>
+        </div>
+        <div class="input-group input-group-sm mb-3" style="width: 400px; text-align: center; margin: auto;">
+          <div class="input-group-default">
+            <span class="input-group-text" id="inputGroup-sizing-sm">בחר שעת שיחה</span>
+          </div>
+          <input type="time" id="input" [(ngModel)]="date2" class="form-control" mdbInput>
+        </div>
+        <!--Footer-->
+        <div class="modal-footer justify-content-center">
+          <button mdbBtn color="default" class="waves-effect" mdbWavesEffect (click)="update()"
+            (click)="frame1.hide()">אישור
+          </button>
+          <a type="button" mdbBtn color="default" outline="true" class="waves-effect" mdbWavesEffect
+            (click)="frame1.hide()">ביטול</a>
+        </div>
+      </div>
+      <!--/.Content-->
+    </div>
+  </div>

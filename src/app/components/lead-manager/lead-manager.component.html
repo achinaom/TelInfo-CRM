@@ -1,0 +1,35 @@
+<h2 style="text-align: center;">העלאת לידים וחילוק לטלפניות</h2>
+<p style="text-align: center;"> על מנת לעלות לטלפניות מספרי טלפון, העלה קובץ XL עם פרטי לידים</p>
+<input style="margin: auto;" type="file" class="form-control" (change)="uplode($event)"  mdbBtn  color="default">
+<button style="margin-left: 700px;" (click)="uploadFile1()"  type="button" mdbBtn  color="default" style="width:150px;" mdbWavesEffect>העלה</button>
+
+<table style="margin-left: 200px; direction: rtl;" mdbTable hover="true" style="width: 400px;" *ngIf="degel">
+  <thead  class="unique-color-dark white-text">
+    <tr>
+        <th scope="col">מספר ליד</th>
+        <th scope="col">שם פרטי</th>
+        <th scope="col">שם משפחה</th>
+        <th scope="col">תעודת זהות</th>
+        <th scope="col">טלפון</th>
+        <th scope="col">עיר</th>
+        <th scope="col">כתובת</th>
+        <th scope="col">מייל</th>
+        <th scope="col">סטטוס</th>
+        <th scope="col">קוד טלפנית</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let item of leadandcallslist">
+        <td >{{item.leadId}}</td>
+        <td>{{item.leadFirstName}}</td>
+        <td>{{item.leadLastName}}</td>
+        <td>{{item.leadTz}}</td>
+        <td>{{item.leadPhoneNumber}}</td>
+        <td>{{item.leadCity}}</td>
+        <td>{{ item.leadAddress}}</td>
+        <td>{{ item.leadMail }}</td>
+        <td>{{ item.leadStatus }}</td>
+        <td>{{ item.idTelephonist_c}}</td>
+      </tr>
+    </tbody>
+<button *ngIf="degel" style="margin: auto; direction: rtl;" type="button" mdbBtn (click)="okLead()" color="default" style="width:150px;" mdbWavesEffect >אישור</button>

@@ -1,0 +1,446 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- ניווט עליון -->
+<!-- fixed-top -->
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue fixed-top" [containerInside]="false" scrolling-navbar>
+  <!-- Navbar brand -->
+  <mdb-navbar-brand>
+    <img width="20%" height="20%" style="margin-left: 50px; border: 2px beige;" class="logo navbar-brand"
+      src="http://localhost:4200/assets/logo11.png">
+  </mdb-navbar-brand> <!-- Navbar brand -->
+
+  <!-- Collapsible content -->
+  <links>
+    <!-- Links -->
+    <ul class="navbar-nav ml-auto">
+      <li *ngIf="workingServise.home" class="nav-item ">
+        <a [routerLink]="['log-in']" class="nav-link waves-light" mdbWavesEffect>
+          <mdb-icon fas icon="user"></mdb-icon> התחבר<span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li *ngIf="workingServise.home" class="nav-item">
+        <a [routerLink]="['\log_in_managet']" class="nav-link waves-light" mdbWavesEffect>
+          <mdb-icon fas icon="user-tie"></mdb-icon>מנהל ראשי<span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li *ngIf="workingServise.home" class="nav-item">
+        <a [routerLink]="['\about']" class="nav-link waves-light" mdbWavesEffect>
+          <mdb-icon fas icon="align-right"></mdb-icon> אודות<span class="sr-only">(current)</span>
+        </a>
+      </li>
+
+      <li *ngIf="workingServise.home" class="nav-item">
+        <a [routerLink]="['\contact-us']" class="nav-link waves-light" mdbWavesEffect>
+          <mdb-icon fas icon="phone"></mdb-icon>צור קשר<span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li *ngIf="workingServise.home" class="nav-item">
+        <a [routerLink]="['\main-home']" class="nav-link waves-light" mdbWavesEffect>
+          <mdb-icon fas icon="home"></mdb-icon>עמוד ראשי<span class="sr-only">(current)</span>
+        </a>
+      </li>
+
+
+      <!--הטלפנית תפריט לאחר שהתחברה -->
+      <!-- <li class="nav-item" *ngIf="workingServise.id_telephonist">
+        <a class="nav-link waves-light" mdbWavesEffect>
+          <mdb-icon fas icon="cog"></mdb-icon> הגדרות
+        </a>
+      </li> -->
+      <!-- Dropdown -->
+      <li *ngIf="workingServise.id_telephonist || workingServise.id_company" class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          <mdb-icon fas icon="users-cog"></mdb-icon> Profile<span class="caret"></span>
+        </a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect (click)="show_my_account()" (click)="frame.show()">
+            <p></p> החשבון שלי
+          </a>
+          <a class="dropdown-item waves-light" mdbWavesEffect (click)="log_in()" href="log-in">החלף משתמש</a>
+        </div>
+      </li>
+
+      <!-- מנהל תפריט -->
+      <li class="nav-item">
+        <a [routerLink]="['\list_teleph']" *ngIf="workingServise.id_company" class="nav-link waves-light"
+          mdbWavesEffect>
+          <mdb-icon fas icon="user-check"></mdb-icon> טלפניות
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['\calls-list']" *ngIf="workingServise.id_company" class="nav-link waves-light" mdbWavesEffect>
+          <mdb-icon fas icon="headset"></mdb-icon>שיחות
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a [routerLink]="['\lead-manager']" *ngIf="workingServise.id_company" class="nav-link waves-light"
+          mdbWavesEffect>
+          <mdb-icon far icon="user"></mdb-icon>רשימת הלידים
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['\phone-number-list']" *ngIf="workingServise.id_company" class="nav-link waves-light"
+          mdbWavesEffect>
+          <mdb-icon fas icon="users"></mdb-icon> מספרי טלפון
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['\contribution-list']" *ngIf="workingServise.id_company" class="nav-link waves-light"
+          mdbWavesEffect>
+          <mdb-icon fas icon="check"></mdb-icon>התרמות
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['\main-company']" *ngIf="workingServise.id_company" class="nav-link waves-light"
+          mdbWavesEffect>
+          <mdb-icon fas icon="headset"></mdb-icon>עמוד ראשי
+        </a>
+      </li>
+    </ul>
+    <!-- Links -->
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="all" style="margin-top: 70px;">
+  <div *ngIf="workingServise.id_telephonist">
+
+    <div class="sidebar-container fixed">
+      <!-- <div class="sidebar-logo">
+      Project Name
+    </div> -->
+      <ul class="sidebar-navigation">
+        <mdb-navbar-brand>
+          <img width="50%" height="50%" style="margin-left: 50px; border: 2px beige;" class="logo navbar-brand"
+            src="http://localhost:4200/assets/logo11.png">
+        </mdb-navbar-brand>
+        <li>
+          <a [routerLink]="['\home']">
+            תפריט ראשי <i class="fa fa-home" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['\calendar']">
+            יומן<i class="far fa-calendar-alt"></i>
+          </a>
+        </li>
+
+        <li>
+          <a [routerLink]="['new-phone']">
+            הוספת קליינט <i class="fa fa-users" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        
+        <li>
+          <a [routerLink]="['תרומות']">
+           תרומות <i class="fa fa-users" aria-hidden="true"></i>
+          </a>
+        </li>
+
+
+
+        <li>
+          <a [routerLink]="['phone_list_telephonist']">
+            רשימת טלפונים <i class="fas fa-address-card"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="">
+    <div class="">
+      <div class="">
+        <div class="">
+        </div>
+        <router-outlet></router-outlet>
+
+
+
+
+
+        <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+          aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+            <!--Content-->
+            <div class="modal-content">
+
+              <!--Header-->
+              <div class="modal-header">
+                <img src="http://localhost:4200/assets/image17.jpg" alt="avatar" class="rounded-circle img-responsive">
+              </div>
+              <!--Body-->
+              <div class="modal-body mb-1">
+                <h5 *ngIf="degel1" class="mt-1 mb-2 text-center">{{Company_show.name}}</h5>
+                <h5 *ngIf="degel2" class="mt-1 mb-2 text-center">{{telephonistDetails.name}}</h5>
+                <div class="md-form ml-0 mr-0">
+
+                  <!-- למנהל -->
+                  <input *ngIf="degel1" type="text" type="text" id="form29" class="form-control form-control-sm ml-0"
+                    value="{{Company_show.name}}" [(ngModel)]="Company_show.name" mdbInput mdbValidate>
+                  <p *ngIf="degel1" style="text-align: right;direction: rtl;">שם החברה</p>
+                  <input *ngIf="degel1" type="password" type="text" id="form28"
+                    class="form-control form-control-sm ml-1" mdbInput mdbValidate value="{{Company_show.managerName}}"
+                    [(ngModel)]="Company_show.managerName">
+                  <p *ngIf="degel1" style="text-align: right;direction: rtl;">מנהל החברה</p>
+
+                  <input *ngIf="degel1" type="password" type="text" id="form21"
+                    class="form-control form-control-sm ml-0" mdbInput mdbValidate value="{{Company_show.mail}}"
+                    [(ngModel)]="Company_show.mail">
+                  <p *ngIf="degel1" style="text-align: right;direction: rtl;">מייל</p>
+
+                  <input *ngIf="degel1" type="password" type="text" id="form22"
+                    class="form-control form-control-sm ml-0" mdbInput mdbValidate value="{{Company_show.managerTz}}"
+                    [(ngModel)]="Company_show.managerTz">
+                  <p *ngIf="degel1" style="text-align: right;direction: rtl;">תעודת זהות מנהל</p>
+
+                  <input *ngIf="degel1" type="password" type="text" id="form23"
+                    class="form-control form-control-sm ml-0" mdbInput mdbValidate
+                    value="{{Company_show.managerPassword}}" [(ngModel)]="Company_show.managerPassword">
+                  <p *ngIf="degel1" style="text-align: right;direction: rtl;">סיסמא</p>
+
+
+                  <!-- לטלפנית -->
+                  <input *ngIf="degel2" type="text" [(ngModel)]="telephonistDetails.name" id="form29"
+                    class="form-control form-control-sm ml-0" value="{{telephonistDetails.name}}" required="required"
+                    pattern="[a-zא-ת]*">
+
+                  <p *ngIf="degel2" style="text-align: right;direction: rtl;">שם</p>
+
+
+                  <input *ngIf="degel2" type="text" id="form28" class="form-control form-control-sm ml-1"
+                    [(ngModel)]="telephonistDetails.telephone" value="telephonistDetails.telephone" #phone1="ngModel"
+                    mdbInput mdbValidate required maxlength="9" minlength="9" pattern="[0-9]*">
+
+                  <p *ngIf="degel2" style="text-align: right;direction: rtl;">טלפון</p>
+
+                  <input *ngIf="degel2" type="password" type="text" id="form21"
+                    class="form-control form-control-sm ml-0" mdbInput mdbValidate value="{{telephonistDetails.mail}}"
+                    [(ngModel)]="telephonistDetails.mail">
+                  <p *ngIf="degel2" style="text-align: right;direction: rtl;">מייל</p>
+
+
+                  <input *ngIf="degel2" type="date" id="form21" max="2005-01-30"
+                    class="form-control form-control-sm ml-0" mdbInput mdbValidate
+                    [(ngModel)]="telephonistDetails.dateBirth"
+                    value="{{telephonistDetails.dateBirth | date:'dd/MM/yyyy' }}">
+                  <p *ngIf="degel2" style="text-align: right;direction: rtl;">תאריך לידה</p>
+
+
+
+                  <input *ngIf="degel2" type="email" #m1="ngModel" class="form-control form-control-sm ml-0" mdbInput
+                    mdbValidate [(ngModel)]="telephonistDetails.mail" value="{{telephonistDetails.mail}}" mdbInput
+                    mdbValidate required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                  <p *ngIf="degel2" style="text-align: right;direction: rtl;"> מייל</p>
+
+
+                  <input *ngIf="degel2" type="text" #password3="ngModel" class="form-control form-control-sm ml-0"
+                    mdbInput mdbValidate [(ngModel)]="telephonistDetails.password" required="required"
+                    pattern="[0-9a-zא-ת]*" maxlength="15" minlength="4" value="{{telephonistDetails.password}}">
+                  <p *ngIf="degel2" style="text-align: right;direction: rtl;">סיסמא</p>
+                </div>
+
+                <div **ngIf="degel1" class="text-center mt-4">
+                  <button (click)="saveDetails_company()" mdbBtn color="cyan" rounded="true" class="mt-1 waves-light"
+                    mdbWavesEffect>שמור שינויים
+                    <mdb-icon fas icon="sign-in-alt" class="ml-1"></mdb-icon>
+                  </button>
+                </div>
+
+
+                <div *ngIf="degel2" class="text-center mt-4">
+                  <button (click)="upate_telephonist1()" mdbBtn color="cyan" rounded="true" class="mt-1 waves-light"
+                    mdbWavesEffect>שמור שינויים
+                    <mdb-icon fas icon="sign-in-alt" class="ml-1"></mdb-icon>
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+            <!--/.Content-->
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<footer *ngIf="workingServise.id_company||workingServise.home" class="page-footer font-small unique-color-dark"
+  style="margin-top: 40px;;">
+
+  <div style="background-color: #1976d2;">
+    <div class="container">
+
+      <!-- Grid row-->
+      <div class="row py-4 d-flex align-items-center">
+
+        <!-- Grid column -->
+        <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+          <h6 class="mb-0">Get connected with us on social networks!</h6>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+          <!-- Facebook -->
+          <a class="fb-ic">
+            <mdb-icon fab icon="facebook" class="white-text mr-4"></mdb-icon>
+          </a>
+          <!-- Twitter -->
+          <a class="tw-ic">
+            <mdb-icon fab icon="twitter" class="white-text mr-4"></mdb-icon>
+          </a>
+          <!-- Google +-->
+          <a class="gplus-ic">
+            <mdb-icon fab fab icon="google-plus" class="white-text mr-4"></mdb-icon>
+          </a>
+          <!--Linkedin -->
+          <a class="li-ic">
+            <mdb-icon fab icon="linkedin" class="white-text mr-4"></mdb-icon>
+          </a>
+          <!--Instagram-->
+          <a class="ins-ic">
+            <mdb-icon fab icon="instagram" class="white-text mr-4"></mdb-icon>
+          </a>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row-->
+    </div>
+  </div>
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left mt-5">
+    <!-- Grid row -->
+    <div class="row mt-3">
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+        <!-- Content -->
+        <h6 class="text-uppercase font-weight-bold">TelInfo</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet,
+          consectetur adipisicing
+          elit.
+        </p>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <!-- <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <h6 class="text-uppercase font-weight-bold">Products</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a href="#!">MDBootstrap</a>
+        </p>
+        <p>
+          <a href="#!">MDWordPress</a>
+        </p>
+        <p>
+          <a href="#!">BrandFlow</a>
+        </p>
+        <p>
+          <a href="#!">Bootstrap Angular</a>
+        </p>
+
+      </div> -->
+      <!-- Grid column -->
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">קישורים שימושיים</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a href="#!">החשבון שלי</a>
+        </p>
+        <p>
+          <a href="#!">להרשמה והצטרפות</a>
+        </p>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">צור קשר</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <mdb-icon fas icon="home" class="mr-3"></mdb-icon> שבתאי הנגבי 63/11
+        </p>
+
+        <p>
+          <mdb-icon fas icon="envelope" class="mr-3"></mdb-icon> <a href="mailto:achinoam.ben.rahamim@gmail.com">
+            achinoam.ben.rahamim@gmail.com</a>
+        </p>
+
+
+      </div>
+      <!-- Grid column -->
+
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+        <!-- Links -->
+        <h6 class="text-uppercase font-weight-bold">צור קשר</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+
+
+        <p>
+          <mdb-icon fas icon="phone" class="mr-3"></mdb-icon> <a href="tel:026760173">02-6760173</a>
+        </p>
+
+        <p>
+          <mdb-icon fas icon="phone" class="mr-3"></mdb-icon> <a href="tel:052127468">0527127468</a>
+
+        </p>
+
+        <p>
+          <mdb-icon fas icon="phone" class="mr-3"></mdb-icon> <a
+            href="https://api.whatsapp.com/send?phone=972502033232&text=" target="_blank">
+            כתבו לנו בוואטס אפם</a>
+
+        </p>
+      </div>
+    </div>
+    <!-- Grid row -->
+  </div>
+  <!-- Footer Links -->
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2021 בונת האתר:
+    <a href="mailto:achinoam.ben.rahamim@gmail.com">achinoam.ben.rahamim@gmil.com </a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->

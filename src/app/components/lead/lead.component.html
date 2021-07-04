@@ -1,0 +1,569 @@
+<div style="height: 50px;width: 100%;background-color: white;"></div>
+
+<div
+  style="height: auto  ; width: 1000px; border-style: groove;margin-left:200px;border-radius: 15px; margin-right: 50px; ">
+  <div style="border-bottom: #37474F;border-bottom-style: solid; ">
+
+    <h2 style="direction: rtl;float: right; color: #37474F;">
+      <mdb-icon fas icon="user-alt"></mdb-icon> {{phone_namber.id}}-{{phone_namber.firstName}}
+    </h2>
+    <h3 style="direction: ltr; color: #37474F; ">telinfo</h3>
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+
+    <button style="background-color:#37474F ;color: lightcyan; width: 497px;" mdbBtn type="button" class="waves-light"
+      mdbWavesEffect (click)="tavnit()">
+      <mdb-icon far icon="envelope"></mdb-icon> שיחה חדשה
+    </button>
+
+
+
+    <button style="background-color:#37474F;color: lightcyan; width:497px;" mdbBtn type="button" class="waves-light"
+      mdbWavesEffect (click)="datails()">
+      <mdb-icon far icon="address-card"></mdb-icon> פרטים
+    </button>
+  </div>
+  <div class="content-container">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <select (change)="showMore($event.target.value)"
+            style="background-color:#37474F; color: lightcyan; width: 900px;text-align: center; height: 40px; border-radius: 2px;  margin: auto; margin-top: 10px;"
+            class="waves-light" mdbWavesEffect>
+            <option selectedstyle="background-color:#37474F; color: lightcyan; width: 142px;" class="waves-light"
+              mdbWavesEffect>
+              <mdb-icon fas icon="sync-alt"></mdb-icon>בחר אחת מאפשרויות
+            </option>
+
+            <option *ngFor="let item of arrSelect" style="background-color:#37474F; color: lightcyan; width: 142px;"
+              class="waves-light" mdbWavesEffect (bure)="showMore(item)">
+              <mdb-icon fas icon="sync-alt"></mdb-icon> {{item}}
+            </option>
+          </select>
+          
+        </div>
+        <div *ngIf="bool1" style="text-align: center; margin-top:50px;">
+          <div style="float: left; margin-right: 50px; margin-left:300px;">
+
+
+            <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">תעודת זהות</span>
+              </div>
+
+              <input #tz11="ngModel" [(ngModel)]="update_phoneNumber.tz" type="text" required class="form-control"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                placeholder="{{phone_namber.tz}}" maxlength="10" pattern="[0-9]*">
+              <div *ngIf="tz11.invalid && (tz11.dirty || tz11.touched) ">
+                <div class="alert-danger" *ngIf="tz11.errors.pattern">אנא הזן מספר ת.ז תקין! </div>
+              </div>
+            </div>
+
+            <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">*שם פרטי</span>
+              </div>
+              <input #Fname="ngModel" [(ngModel)]="update_phoneNumber.firstName" type="text" class="form-control"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                placeholder="{{phone_namber.firstName}}" required pattern="[א-תa-zA-Z ]*">
+              <div *ngIf="Fname.invalid && (Fname.dirty || Fname.touched) ">
+                <div class="alert-danger" *ngIf="Fname.errors.pattern">שדה זה יכול להכיל אותיות בלבד</div>
+                <div class="alert-danger" *ngIf="Fname.errors.required">*</div>
+              </div>
+            </div>
+
+            <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">שם משפחה</span>
+              </div>
+              <input #Lname="ngModel" [(ngModel)]="update_phoneNumber.lastName" type="text" class="form-control"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                placeholder="{{phone_namber.lastName}}" pattern="[א-תa-zA-Z ]*">
+              <div *ngIf="Lname.invalid && (Lname.dirty || Lname.touched) ">
+                <div class="alert-danger" *ngIf="Lname.errors.pattern">שדה זה יכול להכיל אותיות בלבד</div>
+              </div>
+
+            </div>
+
+            <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">כתובת</span>
+              </div>
+              <input #adress1="ngModel" [(ngModel)]="update_phoneNumber.address" type="text" class="form-control"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                placeholder="{{phone_namber.address}}" pattern="[א-תa-z0-9 ]*">
+              <div *ngIf="adress1.invalid && (adress1.dirty || adress1.touched) ">
+                <div class="alert-danger" *ngIf="adress1.errors.pattern">שדה זה יכול להכיל אותיות ומספרים בלבד</div>
+              </div>
+            </div>
+
+            <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">עיר</span>
+              </div>
+              <input #city1="ngModel" [(ngModel)]="update_phoneNumber.city" type="text" class="form-control"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                placeholder="{{phone_namber.city}}" pattern="[א-תa-z ]*">
+              <div *ngIf="city1.invalid && (city1.dirty || city1.touched) ">
+                <div class="alert-danger" *ngIf="city1.errors.pattern">שדה זה יכול להכיל אותיות בלבד</div>
+              </div>
+            </div>
+            <!-- לשנות את השדה למיקוד -->
+            <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">מיקוד</span>
+              </div>
+              <input #mikud="ngModel" placeholder="{{phone_namber.mikud}}" [(ngModel)]="update_phoneNumber.mikud"
+                type="text" class="form-control" aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-sm" pattern="[0-9]*">
+              <div *ngIf="mikud.invalid && (mikud.dirty || mikud.touched) ">
+                <div class="alert-danger" *ngIf="mikud.errors.pattern">השדה יכול להכיל מספרים בלבד </div>
+              </div>
+            </div>
+
+            <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">מייל</span>
+              </div>
+              <input #mail1="ngModel" [(ngModel)]="update_phoneNumber.mail" type="text" class="form-control"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                placeholder="{{phone_namber.mail}}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+              <div *ngIf="mail1.invalid && (mail1.dirty || mail1.touched) ">
+                <div class="alert-danger" *ngIf="mail1.errors.pattern">אנא הזן כתובת מייל תקינה! </div>
+              </div>
+            </div>
+            <button style="width: 200px;" type="button" mdbBtn color="primary" class="relative waves-light"
+              (click)="saveChangForLead()" mdbWavesEffect>שמור שינויים</button>
+          </div>
+
+
+          <div style=" margin-left:50px;margin-right: 100px;">
+            <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">תאריך היווצרות</span>
+              </div>
+              <p class="form-control" mdbInput>{{phone_namber.creationDate|date:'dd/MM/yyyy'}}</p>
+            </div>
+            <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">טל 1*</span>
+              </div>
+
+              <input #phone11="ngModel" [(ngModel)]="update_phoneNumber.phone" type="text" required class="form-control"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                placeholder="{{phone_namber.phone}}" maxlength="10" pattern="[0-9]*">
+              <div *ngIf="phone11.invalid && (phone11.dirty || phone11.touched) ">
+                <div class="alert-danger" *ngIf="phone11.errors.pattern">אנא הזן מספר טלפון תקין! </div>
+                <div class="alert-danger" *ngIf="phone11.errors.required">*</div>
+              </div>
+            </div>
+
+            <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">טל 2</span>
+              </div>
+              <input #phone22="ngModel" [(ngModel)]="update_phoneNumber.phone2" type="text" class="form-control"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                placeholder="{{phone_namber.phone2}}" maxlength="10" pattern="[0-9]*">
+              <div *ngIf="phone22.invalid && (phone22.dirty || phone22.touched) ">
+                <div class="alert-danger" *ngIf="phone22.errors.pattern">אנא הזן מספר טלפון תקין! </div>
+              </div>
+            </div>
+
+            <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">מקום עבודה </span>
+              </div>
+
+              <input #placeWorking="ngModel" [(ngModel)]="update_phoneNumber.placeWorking" type="text"
+                class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                placeholder="{{phone_namber.placeWorking}}">
+
+            </div>
+
+            <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">טלפנית </span>
+              </div>
+              <p class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                {{telephonist1.name}}</p>
+            </div>
+
+
+            <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm" aria-describedby="inputGroup-sizing-sm">סוג
+                  האיש קשר </span>
+              </div>
+              <select class="browser-default custom-select" [(ngModel)]="type_kesher">
+                <option selected>{{type_kesher}}</option>
+                <option value="0">ליד</option>
+                <option value="1">מהטלפנית</option>
+                <option value="2">נכנס אלינו</option>
+              </select>
+            </div>
+
+            <div class="input-group input-group-sm mb-3" style="width: 200px; margin-bottom: 200px;">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-sm">סטטוס </span>
+              </div>
+              <select class="browser-default custom-select" [(ngModel)]="status_lead">
+                <option selected>{{phone_namber.status|showStatusPhone:phone_namber.status}}</option>
+                <option value="1">לא עונים</option>
+                <option value="2">אשפה</option>
+                <option value="3">שיחה עתידית</option>
+                <option value="4">לא טופל</option>
+              </select>
+            </div>
+
+            <div class="input-group input-group-sm mb-3" style="width: 200px;height: 50px;">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- הערות -->
+      <div *ngIf="bool3">
+
+        <mdb-card *ngFor="let item of history_calls">
+          <mdb-card-header></mdb-card-header>
+          <mdb-card-body>
+            <blockquote class="blockquote mb-0">
+              <p style="text-align: right;">{{item.transcriptCall}}</p>
+              <footer class="blockquote-footer">{{item.dateCall|date:'dd/MM/yyyy'}} <cite title="Source Title"></cite>
+              </footer>
+            </blockquote>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+
+      <!-- תרומות -->
+      <div *ngIf="bool2" style="text-align: center; margin-top:50px ">
+        <a class="text-success">
+          <button type="button" mdbBtn color="secondary" (click)="frame1.show()">
+            הוספת תרומה
+            <mdb-icon fas icon="plus" size="2x"></mdb-icon>
+          </button>
+        </a>
+        <table mdbTable hover="true" style="width: 100%; ">
+          <thead>
+            <tr style="background-color: lightgray;width: 100%;">
+              <th scope="col">סכום</th>
+              <th scope="col">תאריך</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of contribution">
+              <td>{{item.sum_contribution}}</td>
+              <td>{{item.dateC| date:'dd/MM/yyyy'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- הסטוריה -->
+      <div *ngIf="bool5" style="text-align: center; margin-top:50px ">
+        <table mdbTable hover="true" style="width: 100%; ">
+          <thead>
+            <tr style="background-color: lightgray;width: 100%;">
+              <th scope="col"> תאריך שיחה</th>
+              <th scope="col">שעת שיחה</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of  history_calls">
+              <td>{{item.dateCall | date:'dd/MM/yyyy'}} </td>
+              <td>{{item.timeCall | date:'HH:mm'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <!-- כל השיחות -->
+      <div *ngIf="bool12" style="text-align: center; margin-top:50px ">
+        <table mdbTable hover="true" style="width: 100%; ">
+          <thead>
+            <tr style="background-color: lightgray;width: 100%;">
+              <th scope="col"> תאריך שיחה</th>
+              <th scope="col">שעת שיחה</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of calls">
+              <td>{{item.dateCall |date:'dd/MM/yyyy'}} </td>
+              <td>{{item.timeCall| date:'HH:mm'}}</td>
+              <td>{{item.done|showCallsDone:item.done}}</td>
+              <!-- לא עובד- אני רוצה לשאול אם השיחה לא בוצעה אז שיתן לי עמודה של בצע שיחה -->
+              <!-- <td *ngIf="item.transcriptCall=='מעוניין">
+                  <span class="table-remove">
+                    <button type="button" mdbBtn rounded="true" size="sm" class="my-0"
+                      style="background-color:greenyellow; font-size: medium;">
+                      <a href="tel:+{{phone_namber.phone}}" style="color:gray" (click)="tavnit()">
+                        <mdb-icon fas icon="phone" class="mr-3"></mdb-icon>בצע שיחה
+                      </a>
+                    </button>
+                  </span>
+                </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- עתיד -->
+      <div *ngIf="bool11" style="text-align: center; margin-top:50px ">
+        <table mdbTable hover="true" style="width: 100%; ">
+          <thead>
+            <tr style="background-color: lightgray;width: 100%;">
+              <th scope="col"> תאריך שיחה</th>
+              <th scope="col">שעת שיחה</th>
+              <th>בוצע \ לא בוצע</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of future_calls">
+              <td>{{item.dateCall | date:'dd/MM/yyyy'}} </td>
+              <td>{{item.timeCall | date:'HH:mm'}}</td>
+              <td>{{item.done|showCallsDone:item.done}}</td>
+              <td>
+                <span class="table-remove">
+                  <button type="button" mdbBtn rounded="true" size="sm" class="my-0"
+                    style="background-color:greenyellow; font-size: medium;">
+                    <a href="tel:+{{phone_namber.phone}}" style="color:gray" (click)="tavnit10(item)">
+                      <mdb-icon fas icon="phone" class="mr-3"></mdb-icon>בצע שיחה
+                    </a>
+                  </button>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <!-- כל השיחות -->
+      <div *ngIf="bool4" style="text-align: center; margin-top:50px ">
+        <button *ngIf="!degel" type="button" mdbBtn rounded="true" size="sm" class="my-0"
+          style="background-color:greenyellow; font-size: medium; margin-bottom: 1000px;">
+          <a href="tel:+{{phone_namber.phone}}" style="color: black;" (click)="new_transkript()">
+            <mdb-icon fas icon="phone" class="mr-3"></mdb-icon>{{phone_namber.phone}} בצע שיחה
+          </a>
+        </button>
+        <div class="md-form" *ngIf="degel" style="text-align: right;">
+          <textarea [(ngModel)]="note" type="text" id="form8" class="md-textarea form-control" style="margin-top: 50px;"
+            placeholder="מעוניין אבל כרגע לא יכול להתקשר עוד שעה וחצי" mdbInput></textarea>
+          <label for="form8" style="text-align: right;"> .הערת שיחה ושליחה לקביעת שיחה הבאה על ידי המערכת שים לב, אין
+            באפשרותך להזין מספרים, תווים ורווחים מיותרים.</label>
+          <label for="form8" style="text-align: right;"> </label>
+        </div>
+        <button type="button" mdbBtn color="primary" style="margin-right: 700px;" mdbWavesEffect
+          (click)="send_transcription()" (click)="frame.show()" *ngIf="degel">שלח תמלול למערכת</button>
+        <p *ngIf="degel">החלף סטטוס במקרה הצורך לפי השיחה שבוצעה</p>
+        <div class="input-group input-group-sm mb-3" style="width: 300px; margin: auto;" *ngIf="degel">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">סטטוס </span>
+          </div>
+          <select class="browser-default custom-select" [(ngModel)]="status_lead">
+            <option selected>{{phone_namber.status|showStatusPhone:phone_namber.status}}</option>
+            <option value="1">לא עונים</option>
+            <option value="2">אשפה</option>
+            <option value="3">שיחה עתידית</option>
+            <option value="4">לא טופל</option>
+          </select>
+          <button (click)="saveChangeStatus()">שמור</button>
+        </div>
+        <button type="button" mdbBtn color="primary" style="margin-right: 700px;" mdbWavesEffect (click)="close_call()"
+          *ngIf="degel">סגור שיחה</button>
+        <p style="margin-top: 100px;">לקביעת שיחה הבאה בחר תאריך ושעה ולאחר מיכן לחץ על אישור</p>
+        <div class="input-group input-group-sm mb-3" style="width: 400px; text-align: center; margin: auto;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">בחר תאריך שיחה</span>
+          </div>
+          <input type="date" min="2021-06-22" id="input" [(ngModel)]="date1" class="form-control" mdbInput>
+        </div>
+
+        <div class="input-group input-group-sm mb-3" style="width: 400px; text-align: center; margin: auto;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">בחר שעת שיחה</span>
+          </div>
+          <input type="time" id="input" [(ngModel)]="date2" class="form-control" mdbInput>
+        </div>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="newcall1()"
+          (click)="basicModal1.show()" mdbWavesEffect>קבע שיחה</button>
+      </div>
+
+    </div>
+
+    <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+      aria-labelledby="myBasicModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+              <span aria-hidden="true"></span>
+            </button>
+            <h4 style="text-align: center;" class="modal-title w-100" id="myModalLabel">השיחה נוספה בהצלחה</h4>
+          </div>
+          <div class="modal-body" style="text-align: center;">
+            <p> השיחה נוספה לתאריך {{date_call |date:'dd/MM/yyyy'}}</p>
+            <p>בשעה {{date_call | date:'HH:mm' }} </p>
+            <p></p>
+            <!-- <p *nfIg="degelModalErr">בחר תאריך ושעת שיחה</p>
+          <p *nfIg="degelModalOk"> בשעה {{newCall.timeCall}} השיחה נקבעה לתאריך {{newCall.dateCall}}</p> -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+              (click)="basicModal.hide()" mdbWavesEffect>אישור</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div mdbModal #basicModal1="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+      aria-labelledby="myBasicModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal1.hide()">
+              <span aria-hidden="true"></span>
+            </button>
+            <h4 style="text-align: center;" class="modal-title w-100" id="myModalLabel">השיחה נוספה בהצלחה</h4>
+          </div>
+          <div class="modal-body" style="text-align: center;">
+            <p> השיחה נוספה לתאריך {{date_call |date:'dd/MM/yyyy'}}</p>
+            <p>בשעה {{time_Call | date:'HH:mm' }} </p>
+            <p></p>
+            <!-- <p *nfIg="degelModalErr">בחר תאריך ושעת שיחה</p>
+          <p *nfIg="degelModalOk"> בשעה {{newCall.timeCall}} השיחה נקבעה לתאריך {{newCall.dateCall}}</p> -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+              (click)="basicModal1.hide()" mdbWavesEffect>אישור</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height: 1500px;" mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1"
+      role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-notify modal-warning" role="document">
+        <!--Content-->
+        <div class="modal-content">
+          <!--Header-->
+          <div class="modal-header">
+            <p class="heading lead"></p>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+              <span aria-hidden="true" class="white-text">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+            <div class="text-center">
+              <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+              <p>{{str1}}</p>
+              <!-- <p>{{str2}}</p> -->
+              <p *ngIf="!bool8">לתאריך: {{date_call| date:'dd/MM/yyyy'}}</p>
+              <p *ngIf="!bool8"> בשעה: {{date_call | date:'HH:mm'}}
+              <p>{{str2}}</p>
+
+            </div>
+            <p></p>
+          </div>
+
+          <!--Footer-->
+          <div class="modal-footer justify-content-center">
+            <a *ngIf="bool6" type="button" mdbBtn color="warning" class="waves-effect" mdbWavesEffect
+              (click)="frame.hide()" (click)="ok_call()" (click)="basicModal.show()">קבע שיחה
+            </a>
+            <a *ngIf="bool8" type="button" mdbBtn color="warning" class="waves-effect" mdbWavesEffect
+              (click)="frame.hide()">אישור
+            </a>
+            <a *ngIf="bool7" type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect
+              (click)="frame.hide()">ביטול</a>
+            <a *ngIf="bool9" type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect
+              (click)="frame.hide()" (click)="ashpa()">אשפה</a>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+  </div>
+
+  <div mdbModal #frame1="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-warning" role="document">
+      <!--Content-->
+      <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+          <p style="margin-right: 30px;" class="heading lead"> הוספת תרומה </p>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame1.hide()">
+            <span aria-hidden="true" class="white-text">&times;</span>
+          </button>
+        </div>
+
+        <!--Body-->
+        <div class="modal-body" style="text-align: right;">
+
+          <div class="input-group input-group-sm mb-3" style="width: 400px; text-align: center; margin: auto;">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">בחר תאריך לביצוע התרומה</span>
+            </div>
+            <input type="date" min="2021-06-22" id="input" [(ngModel)]="date_contribution" class="form-control"
+              mdbInput>
+          </div>
+
+          <div class="input-group input-group-sm mb-3" style="width: 400px; text-align: center; margin: auto;">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">סכום התרומה</span>
+            </div>
+            <input type="text" id="input" [(ngModel)]="sum_contribution" class="form-control" mdbInput>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer justify-content-center">
+
+            <button mdbBtn color="warning" class="waves-effect" mdbWavesEffect (click)="add_contribute()"
+              (click)="framefff.show()">אישור
+            </button>
+            <a type="button" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect
+              (click)="frame1.hide()">ביטול</a>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+
+
+
+
+    <div mdbModal #framefff="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+      aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-notify modal-warning" role="document">
+        <!--Content-->
+        <div class="modal-content">
+          <!--Header-->
+          <div class="modal-header">
+            <p class="heading lead"></p>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="framefff.hide()">
+              <span aria-hidden="true" class="white-text">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+            <div class="text-center">
+              <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+              <p>{{str}}</p>
+            </div>
+            <p></p>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer justify-content-center">
+            <a type="button" mdbBtn color="warning" class="waves-effect" mdbWavesEffect (click)="frame1.hide()"
+              (click)="framefff.hide()" (click)="changeDegel()">אישור
+            </a>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>
+    </div>

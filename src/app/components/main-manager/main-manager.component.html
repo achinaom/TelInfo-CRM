@@ -1,0 +1,120 @@
+<div>
+  <img style="float: right;" class="d-block w-25" src="http://localhost:4200/assets/image13.jpg">
+  <img style="float: right;" class="d-block w-25" src="http://localhost:4200/assets/image16.jpg">
+  <img style="float: right;" class="d-block w-25" src="http://localhost:4200/assets/image17.jpg">
+  <img style="float: right;" class="d-block w-25" src="http://localhost:4200/assets/image20.jpg">
+</div>
+<div style="height: 100; background-color: gray;"></div>
+<div style="width: 1100px; margin:auto; ">
+  <button style="width: 220px; margin-left: 20px; margin-top: 30px; " type="button" mdbBtn color="default"
+    class="relative waves-light" (click)="showCompanies()" mdbWavesEffect>הצג את החברות הרשומות</button>
+  <button style="width: 220px; margin-left: 350px; margin-top: 30px; " type="button" mdbBtn color="default"
+    class="relative waves-light" (click)="frameAdd.show()" mdbWavesEffect>הוסף חברה חדשה</button>
+</div>
+<div style="width: 90%;margin:auto" *ngIf="degel">
+  <table mdbTable style="text-align: right;margin-bottom: 200px;">
+    <thead style="background-color: #1c2331 ;" class="unique-color- white-text">
+      <tr>
+        <th>מספר חברה</th>
+        <th>שם חברה</th>
+        <th>שם מנהל</th>
+        <th> תעודת זהות מנהל</th>
+        <th>סיסמת מנהל</th>
+        <th>מייל</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample" mdbWavesEffect mdbTableCol
+        *ngFor="let item of companiesList">
+        <th scope="row">{{item.id}}</th>
+        <td>{{item.name}}</td>
+        <td>{{item.managerName}}</td>
+        <td>{{item.managerTz}}</td>
+        <td>{{item.managerPassword}}</td>
+        <td>{{item.mail}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div mdbModal #frameAdd="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">הוספת חברה</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frameAdd.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+          <input style="text-align: right;" #name2="ngModel" type="text" id="orangeForm-name" class="form-control"
+            mdbInput mdbValidate [(ngModel)]="newCompany.name" required="required" pattern="[a-zא-ת]*">
+          <label style="text-align: right;">שם</label>
+          <div *ngIf="name2.invalid && (name2.dirty || name2.touched) ">
+            <div class="alert-danger" *ngIf="name2.errors.pattern">השדה יכול להכיל תוים בלבד </div>
+            <div class="alert-danger" *ngIf="name2.errors.required">שדה חובה</div>
+          </div>
+        </div>
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+          <input style="text-align: right;" #name1="ngModel" type="text" id="orangeForm-name" class="form-control"
+            mdbInput mdbValidate [(ngModel)]="newCompany.managerName" required="required" pattern="[a-zא-ת]*">
+          <label style="text-align: right;"> שם מנהל</label>
+
+          <div *ngIf="name1.invalid && (name1.dirty || name1.touched) ">
+            <div class="alert-danger" *ngIf="name1.errors.pattern">השדה יכול להכיל תוים בלבד </div>
+            <div class="alert-danger" *ngIf="name1.errors.required">שדה חובה</div>
+          </div>
+
+        </div>
+        <div>
+          <div class="md-form mb-5">
+            <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+            <input #mail1="ngModel" type="email" id="orangeForm-email" class="form-control"
+              [(ngModel)]="newCompany.mail" mdbInput mdbValidate required="required"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+            <label style="text-align: right;">מייל</label>
+
+
+            <div *ngIf="mail1.invalid && (mail1.dirty || mail1.touched) ">
+              <div class="alert-danger" *ngIf="mail1.errors.pattern">אנא הזן כתובת מייל תקינה! </div>
+              <div class="alert-danger" *ngIf="mail1.errors.required">שדה חובה</div>
+            </div>
+          </div>
+
+          <div class="md-form mb-5">
+            <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+            <input type="text" id="orangeForm-pass" class="form-control" mdbInput #tz1="ngModel" mdbValidate
+              [(ngModel)]="newCompany.managerTz" required maxlength="9" minlength="8" pattern="[0-9]*">
+            <label>תעודת זהות מנהל</label>
+            <div *ngIf="tz1.invalid && (tz1.dirty || tz1.touched) ">
+              <div class="alert-danger" *ngIf="tz1.errors.pattern">השדה יכול להכיל מספרים בלבד </div>
+              <div class="alert-danger" *ngIf="tz1.errors.required">שדה חובה</div>
+              <div class="alert-danger" *ngIf="tz1.errors.length">תעודת זהות לא תקינה</div>
+            </div>
+          </div>
+
+          <div class="md-form mb-5">
+            <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+            <input type="password" id="orangeForm-pass" class="form-control" mdbInput mdbValidate #password1="ngModel"
+              [(ngModel)]="newCompany.managerPassword" required="required" pattern="[0-9a-zא-ת]*" maxlength="15"
+              minlength="4">
+            <label>סיסמא</label>
+            <div *ngIf="password1.invalid && (password1.dirty || password1.touched) ">
+              <div class="alert-danger" *ngIf="password1.errors.pattern">השדה אינו יכול להכיל תוים</div>
+              <div class="alert-danger" *ngIf="password1.errors.required">שדה חובה</div>
+              <div class="alert-danger" *ngIf="password1.errors.maxlength">השדה יכול להכיל מקסימום 9 תווים</div>
+              <div class="alert-danger" *ngIf="password1.errors.minlength">השדה יכול להכיל מינימום 5 תווים</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+
+          <button (click)="addCompany()" mdbBtn color="default" class="waves-light" mdbWavesEffect>אישור</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,175 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div *ngIf="!degel1">
+  <div style="height: 400px; background-color: white;"></div>
+  <p style="margin-left: 50%;">המתן בזמן שהמערכת מכינה עבורך את יומך</p>
+
+  <div style="margin-left: 55%;">
+    <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <div class="spinner-grow text-danger" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <div class="spinner-grow text-info" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+<!-- nav -->
+<div *ngIf="degel1">
+  <div style="margin-top: 30px;">
+    <div style="width: 100%;" class="content-container">
+
+      <div class="container-fluid">
+
+        <div class="container">
+          <div style="width: 1000px; margin-right:30px;">
+            <div class="row">
+              <div style="margin-left: 0px;" class="col-md-4 ">
+                <div class="card-counter primary z-depth-3 rounded">
+                  <i class="fa fa-user-clock"></i>
+
+                  <span class="count-numbers">{{phones_lead_today_count}}</span>
+                  <span class="count-name">לדים להיום</span>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card-counter danger z-depth-3 rounded">
+                  <i class="fa fa-shekel-sign"></i>
+                  <span class="count-numbers">{{count_contribution_day}} <span style="font-size: 20px;">
+                      {{sum_contribution_day | currency: 'ILS'}}</span> </span>
+                  <span class="count-name">התרמות יומיות</span>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card-counter success z-depth-3 rounded">
+                  <i class="fa fa-users"></i>
+                  <span class="count-numbers">{{phones_lead_month_count}}</span>
+                  <span class="count-name" style="font-size: 20px;">לדים לחודש זה</span>
+                </div>
+              </div>
+              <div>
+                <div style="margin-top: 100px; margin-right: 0px;">
+
+                  <button style="height: 40px; font-size: 15px;width: 320px;" mdbBtn type="button" color="primary"
+                    rounded="true" outline="true" mdbWavesEffect (click)="show_calls_for_today()">פגישות להיום</button>
+                  <mdb-badge pill="true" color="blue">{{for_today_leadCount}}</mdb-badge>
+
+                </div>
+                <div>
+                  <button style="height: 40px; font-size: 15px;width: 320px;" mdbBtn type="button" color="primary"
+                    rounded="true" outline="true" mdbWavesEffect (click)="no_answer()">לא עונים</button>
+                  <mdb-badge pill="true" color="blue">{{no_answer_leadCount}}</mdb-badge>
+                </div>
+
+                <div class="row-md-78">
+
+                  <button style="height: 40px; font-size: 15px;width: 320px;" mdbBtn type="button" color="primary"
+                    rounded="true" outline="true" mdbWavesEffect (click)="month_Donations()">התרמות של החודש
+                  </button>
+                  <mdb-badge pill="true" color="blue">{{count_contribution_month}}</mdb-badge>
+                </div>
+              </div>
+              <div style="margin-right: 50px; margin-top: 100px; width: 600px; text-align: center;">
+                <table mdbTable hover="true" style="width: 600px;" *ngIf="bool1">
+                  <thead>
+                    <tr>
+                      <th scope="col">מספר ליד</th>
+                      <th scope="col">שם פרטי</th>
+                      <th scope="col">שם משפחה</th>
+                      <th scope="col"> שעת שיחה</th>
+                      <th>סוג</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="margin-bottom: 10px;" *ngFor="let item of for_today_lead"
+                      [routerLink]="['/lead',item.leadId,null]">
+                      <td>{{item.leadId}}</td>
+                      <td>{{item.leadFirstName}}</td>
+                      <td>{{item.leadLastName}}</td>
+                      <td>{{ item.timeCall | date:'HH:mm' }}</td>
+                      <td>{{item.leadType|showTypePhone:item.leadType}}</td>
+
+                      <button type="button" mdbBtn rounded="true" size="sm" class="my-0"
+                        style="background-color:greenyellow; font-size: medium; ">
+                        <a [routerLink]="['/lead',item.leadId,item.idCall]" style="color:gray">
+                          <mdb-icon fas icon="phone" class="mr-3"></mdb-icon>בצע שיחה
+                        </a>
+                      </button>
+                    </tr>
+                  </tbody>
+                </table>
+                <table mdbTable hover="true" style="width: 500px;" *ngIf="bool2">
+                  <thead>
+                    <tr>
+                      <th scope="col">מספר ליד</th>
+                      <th scope="col">שם פרטי</th>
+                      <th scope="col">שם משפחה</th>
+                      <th scope="col">טלפון</th>
+                      <!-- <th scope="col">כמות שיחות</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of no_answer_lead" [routerLink]="['/lead',item.leadId,null]">
+                      <td>{{item.leadId}}</td>
+                      <td>{{item.leadFirstName}}</td>
+                      <td>{{item.leadLastName}}</td>
+                      <td>{{item.leadPhoneNumber}}</td>
+                      <!-- <td>{{ item.timeCall | date:'mm:ss' }}</td> -->
+                    </tr>
+                  </tbody>
+                </table>
+                <table mdbTable hover="true" style="width: 500px;" *ngIf="bool3">
+                  <thead>
+                    <tr>
+                      <th scope="col">מספר ליד</th>
+                      <th scope="col">שם פרטי</th>
+                      <th scope="col">שם משפחה</th>
+                      <th scope="col">טלפון</th>
+                      <th scope="col">תאריך שיחה</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of Returned_from_the_system" [routerLink]="['/lead',item.leadId,null]">
+                      <td>{{item.leadId}}</td>
+                      <td>{{item.leadFirstName}}</td>
+                      <td>{{item.leadLastName}}</td>
+                      <td>{{item.leadPhoneNumber}}</td>
+                      <td>{{ item.timeCall | date:'HH:mm' }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div *ngIf="bool4">
+                  <div class="row">
+                    <div class="col-md-10;" class="example z-depth-2" style="background:#90caf9
+          ; width: 120px; height: 150px; border-radius:10px; margin-right: 30px; margin-top: 60px; color: ivory;">
+                      <p style="font-size: 20px;">13</p>
+                      <p style="font-size: 15;">הבונוסים של הטלפנית לחודש זה</p>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-10;" class="example z-depth-2" style="background:#90caf9
+            ; width: 120px; height: 150px; border-radius:10px; margin-right: 30px; margin-top: 60px; color: ivory;">
+                        <p style="font-size: 20px;">12</p>
+                        <p style="font-size: 15;">אחוזים של התרמות ממספר הלדים שקיבל בחודש</p>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-10;" class="example z-depth-2" style="background:#90caf9
+              ; width: 120px; height: 150px; border-radius:10px; margin-right: 30px; margin-top: 60px; color: ivory;">
+                          <p style="font-size: 25px; ">{{count_contribution_month}} <span style="font-size: 15px;">
+                              {{sum_contribution_month | currency: 'ILS'}}</span></p>
+                          <p style="font-size: 15;">התרמות לחודש זה</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>

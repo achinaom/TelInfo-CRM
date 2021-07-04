@@ -1,0 +1,241 @@
+<div *ngIf="!degel" style="margin-left:47%; ">
+  <div style="height: 400px; background-color: white;"></div>
+  <div class="spinner-grow text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-secondary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+
+  <div class="spinner-grow text-danger" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+
+  <div class="spinner-grow text-info" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+
+</div>
+<div *ngIf="degel">
+
+
+
+  <table mdbTable style="direction: rtl;text-align: right;">
+    <thead class="unique-color-dark white-text">
+      <tr>
+        <th> מספר טלפנית</th>
+        <th> שם</th>
+        <th> טלפון</th>
+        <th> תאריך לידה </th>
+        <th> מייל </th>
+        <th> סיסמא </th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample" mdbWavesEffect mdbTableCol
+        *ngFor="let el of telephonistInCompanyDetails1">
+        <th scope="row">{{el.idTelephonistInCompany}}</th>
+        <td>{{el.name}}</td>
+        <td>{{el.telephone}}</td>
+        <td>{{el.dateBirth}}</td>
+        <td>{{el.mail}}</td>
+        <td>{{el.password}}</td>
+        <td></td>
+        <td class="button" (click)="showDetails(el.idTelephonistInCompany)" (click)="frame.show()"> ערוך<mdb-icon fas
+            icon="user-edit">
+            ערוך טלפנית</mdb-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
+
+<div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fluid modal-side modal-top-left" role="document">
+    <div class="modal-content" style="width: 1000px; margin: auto;">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 style="margin: auto;" class="modal-title" id="myModalLabel">פרטי טלפנית {{telephonistDetails.name}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="סגור" (click)="frame.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body" style="text-align: right;">
+
+        <table mdbTable style="direction: rtl;text-align: right;">
+          <thead class="unique-color-dark white-text">
+            <tr>
+              <th> שם </th>
+              <th> פלפון </th>
+              <th> תאריך לידה</th>
+              <th> מייל</th>
+              <th> סיסמא</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td contenteditable="true"><input [(ngModel)]="telephonistDetails.name" #name7="ngModel" type="text"
+                  id="orangeForm-name" class="form-control" mdbInput mdbValidate value="{{telephonistDetails.name}}"
+                  required="required" pattern="[a-zא-ת A-Z]*">
+                <div *ngIf="name7.invalid && (name7.dirty || name7.touched) ">
+                  <div class="alert-danger" *ngIf="name7.errors.pattern">השדה יכול להכיל תוים בלבד </div>
+                  <div class="alert-danger" *ngIf="name7.errors.required">שדה חובה</div>
+                </div>
+
+              </td>
+              <td contenteditable="true">
+                <input type="tel" id="orangeForm-phone" class="form-control" style="width: 150px;"
+                  [(ngModel)]="telephonistDetails.telephone" value="telephonistDetails.telephone" #phone1="ngModel"
+                  mdbInput mdbValidate required maxlength="9" minlength="9" pattern="[0-9]*">
+
+                <div *ngIf="phone1.invalid && (phone1.dirty || phone1.touched) ">
+                  <div class="alert-danger" *ngIf="phone1.errors.pattern">השדה יכול להכיל מספרים בלבד </div>
+                  <div class="alert-danger" *ngIf="phone1.errors.required">שדה חובה</div>
+                  <div class="alert-danger" *ngIf="phone1.errors.length">מספר טלפון לא תקין</div>
+                </div>
+              </td>
+              <td contenteditable="true"><input style="width: 180px;" type="date" type="date" id="orangeForm-birth"
+                  class="form-control" mdbInput mdbValidate [(ngModel)]="telephonistDetails.dateBirth"
+                  value="{{telephonistDetails.dateBirth | date:'dd/MM/yyyy' }}"></td>
+
+              <td contenteditable="true"><input style="width: 150px;" type="email" id="orangeForm-email"
+                  class="form-control" [(ngModel)]="telephonistDetails.mail" #mail2="ngModel"
+                  value="{{telephonistDetails.mail}}" mdbInput mdbValidate required="required"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                <div *ngIf="mail2.invalid && (mail2.dirty || mail2.touched) ">
+                  <div class="alert-danger" *ngIf="mail2.errors.pattern">אנא הזן כתובת מייל תקינה! </div>
+                  <div class="alert-danger" *ngIf="mail2.errors.required">שדה חובה</div>
+                </div>
+              </td>
+
+
+              <div class="md-form mb-4">
+                <input style="width: 150px;" type="text" id="orangeForm-pass" class="form-control" #password3="ngModel"
+                  mdbInput mdbValidate [(ngModel)]="telephonistDetails.password" required="required"
+                  pattern="[0-9a-zא-ת]*" maxlength="15" minlength="4" value="{{telephonistDetails.password}}">
+                <div *ngIf="password3.invalid && (password3.dirty || password3.touched) ">
+                  <div class="alert-danger" *ngIf="password3.errors.pattern">השדה אינו יכול להכיל תוים</div>
+                  <div class="alert-danger" *ngIf="password3.errors.required">שדה חובה</div>
+                  <div class="alert-danger" *ngIf="password3.errors.maxlength">השדה יכול להכיל מקסימום 9 תווים</div>
+                  <div class="alert-danger" *ngIf="password3.errors.minlength">השדה יכול להכיל מינימום 5 תווים</div>
+                </div>
+              </div>
+
+            </tr>
+
+
+          </tbody>
+        </table>
+
+
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect
+          data-dismiss="modal" (click)="frame.hide()">סגור</button>
+        <button *ngIf="!password3.errors&&!mail2.errors&&!phone1.errors&&!name7.errors" mdbBtn color="primary"
+          class="waves-light" mdbWavesEffect (click)="upate_telephonist1()" (click)="frame.hide()">שמור
+          שינויים</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <input type="file" class="form-control" (change)="addfile($event)" placeholder="upload file" accept=".csv,application" > -->
+
+
+
+
+
+
+
+<button style="margin-left: 70px;" type="button" mdbBtn color="default" rounded="true" data-toggle="modal"
+  data-target="#basicExample" (click)="frameAdd.show()" mdbWavesEffect>הוספת טלפנית לחברה
+</button>
+
+<div mdbModal #frameAdd="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+
+        <h4 class="modal-title w-100 font-weight-bold">הוספת טלפנית</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="סגור" (click)="frameAdd.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+
+
+
+
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+          <input style="text-align: right;" #name2="ngModel" type="text" id="orangeForm-name" class="form-control"
+            mdbInput mdbValidate [(ngModel)]="newtelephonist.name" required="required" pattern="[a-zא-ת A-Z]*">
+          <div *ngIf="name2.invalid && (name2.dirty || name2.touched) ">
+            <div class="alert-danger" *ngIf="name2.errors.pattern">השדה יכול להכיל תוים בלבד </div>
+            <div class="alert-danger" *ngIf="name2.errors.required">שדה חובה</div>
+          </div>
+        </div>
+        <div class="md-form mb-5">
+          <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+          <input #mail1="ngModel" type="email" id="orangeForm-email" class="form-control"
+            [(ngModel)]="newtelephonist.mail" mdbInput mdbValidate required="required"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+          <label style="text-align: right;">מייל</label>
+          <div *ngIf="mail1.invalid && (mail1.dirty || mail1.touched) ">
+            <div class="alert-danger" *ngIf="mail1.errors.pattern">אנא הזן כתובת מייל תקינה! </div>
+            <div class="alert-danger" *ngIf="mail1.errors.required">שדה חובה</div>
+          </div>
+        </div>
+
+        <div class="md-form mb-4">
+          <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+          <input type="password" id="orangeForm-pass" class="form-control" #password1="ngModel" mdbInput mdbValidate
+            [(ngModel)]="password" required="required" pattern="[0-9a-zא-ת ]*" maxlength="15" minlength="4">
+          <label>סיסמא</label>
+          <div *ngIf="password1.invalid && (password1.dirty || password1.touched) ">
+            <div class="alert-danger" *ngIf="password1.errors.pattern">השדה אינו יכול להכיל תוים</div>
+            <div class="alert-danger" *ngIf="password1.errors.required">שדה חובה</div>
+            <div class="alert-danger" *ngIf="password1.errors.maxlength">השדה יכול להכיל מקסימום 9 תווים</div>
+            <div class="alert-danger" *ngIf="password1.errors.minlength">השדה יכול להכיל מינימום 5 תווים</div>
+          </div>
+        </div>
+
+        <div class="md-form mb-4">
+          <mdb-icon fas icon="calendar" class="prefix grey-text"></mdb-icon>
+          <input max="2005-01-30" type="date" id="orangeForm-birth" class="form-control"
+            [(ngModel)]="newtelephonist.dateBirth " mdbInput mdbValidate>
+          <label>תאריך לידה</label>
+
+        </div>
+        <div class="md-form mb-4">
+          <mdb-icon fas icon="phone" class="prefix grey-text"></mdb-icon>
+          <input type="tel" id="orangeForm-phone" class="form-control" [(ngModel)]="newtelephonist.telephone"
+            #tz1="ngModel" mdbInput mdbValidate required maxlength="9" minlength="9" pattern="[0-9]*">
+          <label>טלפון</label>
+          <div *ngIf="tz1.invalid && (tz1.dirty || tz1.touched) ">
+            <div class="alert-danger" *ngIf="tz1.errors.pattern">השדה יכול להכיל מספרים בלבד </div>
+            <div class="alert-danger" *ngIf="tz1.errors.required">שדה חובה</div>
+            <div class="alert-danger" *ngIf="tz1.errors.length">מספר טלפון לא תקין</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button *ngIf="!tz1.errors&&!password1.errors&&!mail1.errors&&!name2.errors" (click)="addTelephonist()"
+          (click)="frameAdd.hide()" mdbBtn color="default" class="waves-light" mdbWavesEffect>אישור</button>
+      </div>
+    </div>
+  </div>
+</div>

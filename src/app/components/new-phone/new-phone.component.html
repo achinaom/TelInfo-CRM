@@ -1,0 +1,185 @@
+
+<div style="height: 50px;background-color: white;"></div>
+<div style="height: auto  ; width: 800px; border-style: groove;margin-right:170px;border-radius: 15px; ">
+    <div  style="border-bottom: #37474F;border-bottom-style: solid; ">
+        
+    <h2  style="direction: rtl;float: right; color: #37474F;">      <mdb-icon fas icon="user-alt"></mdb-icon>  הוספת קליינט </h2>
+    <h3 style="direction: ltr; color: #37474F; ">telinfo</h3>
+</div>
+<div class="btn-group" role="group" aria-label="Basic example">
+
+
+
+    <div   style="text-align: center; margin-top:50px;">
+      <p style="margin-left: 400px;">*שים לב התיבות המסומנים בכוכבית הינם חובה</p>
+
+        <div style="float: left; margin-right: 50px; margin-left:200px;">
+     
+
+        <!-- <div class="input-group input-group-sm mb-3" style="width: 200px;">
+          <div class="input-group-prepend" >
+            <span class="input-group-text" id="inputGroup-sizing-sm" >תאריך התרמה</span>
+          </div>
+          <input type="text" id="input" class="form-control" mdbInput >
+      </div> -->
+      
+      <div class="input-group input-group-sm mb-3" style="width: 200px;">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">תעודת זהות</span>
+        </div>
+
+        <input #tz11="ngModel" [(ngModel)]="update_phoneNumber.tz" type="text"  class="form-control"
+          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+         maxlength="10" pattern="[0-9]*">
+        <div *ngIf="tz11.invalid && (tz11.dirty || tz11.touched) ">
+          <div class="alert-danger" *ngIf="tz11.errors.pattern">אנא הזן מספר טלפון תקין! </div>
+        </div>
+      </div>
+
+        <div class="input-group input-group-sm mb-3" style="width: 200px;">
+          <div class="input-group-prepend" >
+            <span class="input-group-text" id="inputGroup-sizing-sm" >*שם פרטי</span>
+          </div>
+          <input #Fname="ngModel" [(ngModel)]="update_phoneNumber.firstName"  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required pattern="[א-תa-z A-Z]*">
+          <div *ngIf="Fname.invalid && (Fname.dirty || Fname.touched) ">
+            <div class="alert-danger" *ngIf="Fname.errors.pattern">שדה זה יכול להכיל אותיות בלבד</div>
+            <div class="alert-danger" *ngIf="Fname.errors.required">*</div>
+
+            
+        </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-3" style="width: 200px;">
+          <div class="input-group-prepend" >
+            <span class="input-group-text" id="inputGroup-sizing-sm" >שם משפחה</span>
+          </div>
+          <input #Lname="ngModel" [(ngModel)]="update_phoneNumber.lastName" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" pattern="[א-תa-z A-Z]*"  >
+          <div *ngIf="Lname.invalid && (Lname.dirty || Lname.touched) ">
+            <div class="alert-danger" *ngIf="Lname.errors.pattern">שדה זה יכול להכיל אותיות בלבד</div>
+        </div>
+      
+        </div>
+
+        <div class="input-group input-group-sm mb-3" style="width: 200px;">
+          <div class="input-group-prepend" >
+            <span class="input-group-text" id="inputGroup-sizing-sm" >כתובת</span>
+          </div>
+          <input  #adress1="ngModel" [(ngModel)]="update_phoneNumber.address"   type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" >
+        
+        </div>
+
+        <div class="input-group input-group-sm mb-3" style="width: 200px;">
+          <div class="input-group-prepend" >
+            <span class="input-group-text" id="inputGroup-sizing-sm" >עיר</span>
+          </div>
+          <input  #city1="ngModel" [(ngModel)]="update_phoneNumber.city"  type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"  pattern="[א-תa-z A-Z]*">
+          <div *ngIf="city1.invalid && (city1.dirty || city1.touched) ">
+            <div class="alert-danger" *ngIf="city1.errors.pattern">שדה זה יכול להכיל אותיות בלבד</div>
+        </div>
+        </div>
+<!-- לשנות את השדה למיקוד -->
+        <div class="input-group input-group-sm mb-3" style="width: 200px;">
+          <div class="input-group-prepend" >
+            <span class="input-group-text" id="inputGroup-sizing-sm" >מיקוד</span>
+          </div>
+          <input #mikud="ngModel" [(ngModel)]="update_phoneNumber.address" type="text" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"  pattern="[0-9]*">
+          <div *ngIf="mikud.invalid && (mikud.dirty || mikud.touched) ">
+            <div class="alert-danger" *ngIf="mikud.errors.pattern">השדה יכול להכיל מספרים בלבד </div>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-3" style="width: 200px;">
+          <div class="input-group-prepend" >
+            <span class="input-group-text" id="inputGroup-sizing-sm" >מייל</span>
+          </div>
+          <input  #mail1="ngModel" [(ngModel)]="update_phoneNumber.mail" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+          <div *ngIf="mail1.invalid && (mail1.dirty || mail1.touched) ">
+            <div class="alert-danger" *ngIf="mail1.errors.pattern">אנא הזן כתובת מייל תקינה! </div>
+        </div>
+        </div>
+
+      </div>
+
+      <div class="input-group input-group-sm mb-3" style="width: 200px;">
+        <div class="input-group-prepend" >
+          <span class="input-group-text" id="inputGroup-sizing-sm" >תאריך היווצרות</span>
+       </div>
+            <p  class="form-control" mdbInput >{{date1|date:'dd/MM/yyyy'}}</p>
+        </div> 
+
+      <div style=" margin-left:50px;">
+        <div class="input-group input-group-sm mb-3" style="width: 200px;">
+          <div class="input-group-prepend" >
+            <span class="input-group-text" id="inputGroup-sizing-sm" >טל 1*</span>
+          </div>
+
+          <input #phone11="ngModel" [(ngModel)]="update_phoneNumber.phone" type="text" required class="form-control" aria-label="Sizing example input"  aria-describedby="inputGroup-sizing-sm" maxlength="10" pattern="[0-9]*">
+          <div *ngIf="phone11.invalid && (phone11.dirty || phone11.touched) ">
+            <div class="alert-danger" *ngIf="phone11.errors.pattern">אנא הזן מספר טלפון תקין! </div>
+            <div class="alert-danger" *ngIf="phone11.errors.required">*</div>
+        </div>
+     
+        </div>
+
+        <div class="input-group input-group-sm mb-3" style="width: 200px;"> 
+          <div class="input-group-prepend" >
+            <span class="input-group-text" id="inputGroup-sizing-sm" >טל 2</span>
+          </div>
+          <input #phone22="ngModel" [(ngModel)]="update_phoneNumber.phone2" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="10" pattern="[0-9]*">
+          <div *ngIf="phone22.invalid && (phone22.dirty || phone22.touched) ">
+            <div class="alert-danger" *ngIf="phone22.errors.pattern">אנא הזן מספר טלפון תקין </div>
+        </div>
+        </div>
+
+        <div class="input-group input-group-sm mb-3" style="width: 200px;">
+          <div class="input-group-prepend" >
+            <span class="input-group-text" id="inputGroup-sizing-sm" >מקום עבודה </span>
+          </div>
+
+          <input #placeWorking="ngModel" [(ngModel)]="update_phoneNumber.placeWorking"   type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"  >
+       
+        </div>
+
+        <div class="input-group input-group-sm mb-3" style="width: 200px;">
+          <div class="input-group-prepend" >
+            <span class="input-group-text" id="inputGroup-sizing-sm"    >טלפנית </span>
+          </div>
+          <p  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"   >{{telephonist1.name}}</p>
+        </div>
+
+
+        <div class="input-group input-group-sm mb-3" style="width: 200px;">
+            <div class="input-group-prepend" >
+              <span class="input-group-text" id="inputGroup-sizing-sm" >סוג</span>
+           </div>
+                <p  class="form-control" mdbInput >מהטלפנית</p>
+            </div> 
+<!-- 
+             <div class="input-group input-group-sm mb-3" style="width: 200px;">
+              <div class="input-group-prepend" >
+                <span class="input-group-text" id="inputGroup-sizing-sm" >נושא התרומה </span>
+              </div>
+              <select class="browser-default custom-select">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>        
+                 </div> -->
+
+            
+
+
+
+                 <div class="input-group input-group-sm mb-3" style="width: 200px;">
+                    <div class="input-group-prepend" >
+                      <span class="input-group-text" id="inputGroup-sizing-sm" >סטטוס</span>
+                   </div>
+                        <p  class="form-control" mdbInput >לא טופל</p>
+                    </div> 
+
+<button *ngIf="!phone11.errors&&!Fname.errors" style="width: 450px; margin-left: 150px;margin-bottom: 20px; " type="button" mdbBtn color="primary" class="relative waves-light" (click)="saveChangForLead()"  mdbWavesEffect>הוסף קליינט</button>
+</div>
+</div>
+
+</div>

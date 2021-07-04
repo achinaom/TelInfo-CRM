@@ -1,0 +1,102 @@
+<mdb-carousel [animation]="'slide'">
+  <mdb-carousel-item>
+    <img class="d-block w-100" src="http://localhost:4200/assets/image13.jpg" alt="First slide">
+  </mdb-carousel-item>
+  <mdb-carousel-item>
+    <img class="d-block w-100" src="http://localhost:4200/assets/image14.jpg" alt="Second slide">
+  </mdb-carousel-item>
+  <mdb-carousel-item>
+    <img class="d-block w-100" src="http://localhost:4200/assets/image15.jpg" alt="First slide">
+  </mdb-carousel-item>
+  <mdb-carousel-item>
+    <img class="d-block w-100" src="http://localhost:4200/assets/image16.jpg" alt="First slide">
+  </mdb-carousel-item>
+  <mdb-carousel-item>
+    <img class="d-block w-100" src="http://localhost:4200/assets/image17.jpg" alt="First slide">
+  </mdb-carousel-item>
+</mdb-carousel>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark scrolling-navbar fixed-top"> -->
+<!-- Main layout -->
+<main>
+  <!-- Section: About -->
+  <section id="about" class="my-5 pt-5">
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-5">
+
+          <h2 class="h1 font-weight-bold text-uppercase mb-4" style="text-align: right;">אודות</h2>
+          <p align="justify" class="lead font-weight-normal mb-4"> משנת 1996, והוקמה ע"י עופר בן יוסף המכהן כמנכ"ל
+            החברה.
+
+            החברה עוסקת במתן יעוץ, תמיכה ואספקת פתרונות תוכנה בתחום ניהול הלקוחות, ההתרמות והשיווק הישיר.
+
+            אנו מאמינים כי בכדי להציע את הפיתרון האופטימלי ללקוח, יש להתחיל בניתוח כלכלי וארגוני של צרכי הלקוח. התאמת
+            התוכנה לצריכה להתבצע כפועל יוצא מהבנת צרכי הלקוח.
+
+            ניתוח הצרכים ואפיון המערכת מתבצע ע"י גורמים בעלי הבנה כלכלית מחד, וידע נרחב במערכות מידע מאידך.
+
+            אנו מלווים את לקוחותינו בכל שלבי הפרוייקט – מניתוח צרכים, דרך אפיון הפיתרון, הצעת תוכנות מדף מתאימות או
+            כתיבת והתאמת תוכנה ייעודית ללקוח, הטמעת התוכנה, הדרכה ותמיכה.
+
+            מערכות מידע פיננסיות בע"מ הינה ספק פתרונות תוכנה, המתמחה במערכות בעלות אוריינטציה כלכלית. החברה פעילה תוכנות
+            המדף שלנו בנושא טלמרקטינג, התרמות, רכש וייבוא, ושווק ישיר מאפשרות התאמה לכל בית עסק בתחומים אלו, ואנו מציעים
+            פיתוח והתאמת התוכנה לצרכי הלקוח במידה וקיים צורך שאינו נענה בצורה מלאה.
+
+            במסגרת תהליך הלווי העסקי אנו מספקים גם יעוץ בנושא הקמת והפעלת מוקד הטלמרקטינג, ניהול יעיל של מאגרי הלקוחות
+            והעובדים, וכן שירותי טיוב למאגרי המידע.
+
+            אנו מאמינים בקשר רציף עם לקוחותינו, ולכן אנו מציעים שירותי לווי ויעוץ גם לאחר הטמעת התוכנה אצל הלקוח, כאשר
+            המטרה הינה זיהוי צרכים חדשים ואספקת פיתרון הולם במידה ונדרש.
+
+          </p>
+          <!-- <button type="button" class="btn btn-wood btn-lg-font mx-0 mb-5 mb-lg-0">View our catalog</button> -->
+
+        </div>
+
+        <div class="col-lg-7" style="margin-top: 450px;">
+
+          <img src="http://localhost:4200/assets/image20.jpg" class="img-fluid z-depth-2 rounded" alt="1">
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+  <!-- Section: About -->
+</main>
+<!-- Main layout -->
+<!-- Footer -->
+<footer class="page-footer pt-4">
+
+  <div class="container text-center my-5">
+
+    <div class="row">
+
+      <div class="col-md-6 mx-auto">
+
+        <h2 class="font-weight-bold text-uppercase mb-4 pb-2">עקוב אחר העידכונים שלנו</h2>
+        <!-- <form action="" class="pb-5">
+            <div class="md-form input-group mb-3"> -->
+        <input type="text" style="border:none" class="form-control" #mail1="ngModel" [(ngModel)]="mail2"
+          placeholder="כתובת המייל שלך" aria-label="Your email address" aria-describedby="MaterialButton-addon3"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        <!-- <div class="alert-danger" *ngIf="mail1.errors.pattern">אנא הזן כתובת מייל תקינה! </div> -->
+
+        <div class="input-group-append">
+          <button class="btn btn-md btn-wood m-0 px-3" type="button" id="MaterialButton-addon3"
+            (click)="send_sebscribe()">עקוב</button>
+        </div>
+        <!-- </div>
+          </form> -->
+      </div>
+      <div class="col-12 d-flex justify-content-center pb-3">
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer -->

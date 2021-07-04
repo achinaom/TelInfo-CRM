@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap Elegant Account Login Form with Avatar Icon</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merienda+One">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body  style="background-color: white;">
+<div class="login-form" style="width: 500px; text-align: center;">    
+    <form (ngSubmit)="login()" action="/examples/actions/confirmation.php" method="post" #myForm="ngForm" class="container" >
+		<h2 class="h1 font-weight-bold text-uppercase mb-4"  >כניסה כמנהל ראשי</h2>
+		<mdb-navbar-brand>
+			<img style="margin-left: 50px;" class="logo navbar-brand" src="http://localhost:4200/assets/logo22.png">
+		  </mdb-navbar-brand>
+			<input style="margin-bottom: 30px;" type="email" [(ngModel)]="name" name="mail1"  #mail1="ngModel" class="form-control" placeholder="מייל" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" >
+			<div *ngIf="mail1.invalid && (mail1.dirty || mail1.touched) ">
+			  <div class="alert-danger" *ngIf="mail1.errors.pattern">אנא הזן כתובת מייל תקינה! </div>
+			  <div class="alert-danger" *ngIf="mail1.errors.required">שדה חובה</div>
+			</div>
+			<input type="password" [(ngModel)]="password" name="password1"  #password1="ngModel" class="form-control" placeholder="סיסמא" required="required" pattern="[0-9a-zא-ת]*" maxlength="15" minlength="4" >
+			<div *ngIf="password1.invalid && (password1.dirty || password1.touched) ">
+			  <div class="alert-danger" *ngIf="password1.errors.pattern">השדה אינו יכול להכיל תוים</div>
+			  <div class="alert-danger" *ngIf="password1.errors.required">שדה חובה</div>
+			  <div class="alert-danger" *ngIf="password1.errors.maxlength">השדה יכול להכיל מקסימום 9 תווים</div>
+			  <div class="alert-danger" *ngIf="password1.errors.minlength">השדה יכול להכיל מינימום 5 תווים</div>
+			</div>
+		<input [disabled]="myForm.form.invalid" style="color:#424242 ;"  type="submit" class="btn btn-primary btn-block btn-lg" value="כניסה" style="background-color:  #424242 ;">              
+	</form>			
+</div>
+</body>
+</html>

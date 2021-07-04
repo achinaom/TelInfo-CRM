@@ -1,0 +1,101 @@
+<div style=" width: 1100px;">
+  <div style="height: 100; background-color: gray;"></div>
+  <div style="width: 1100px; margin:auto; ">
+    <button style="width: 220px; margin-left: 20px; margin-top: 30px; " type="button" mdbBtn color="default"
+      class="relative waves-light" (click)="showLead()" mdbWavesEffect>הצג לידים</button>
+    <button style="width: 220px; margin-left: 20px; margin-top: 30px; " type="button" mdbBtn color="default"
+      class="relative waves-light" (click)="showAll()" mdbWavesEffect>הצג את כל מספרי הטלפון</button>
+    <button style="width: 220px; margin-left: 20px; margin-top: 30px; " type="button" mdbBtn color="default"
+      class="relative waves-light" (click)="showCom()" mdbWavesEffect>הצג מספרים משיחות נכנסות</button>
+    <button style="width: 220px; margin-left: 60px; margin-top: 30px; " type="button" mdbBtn color="default"
+      class="relative waves-light" (click)="showPhoneT()" mdbWavesEffect>הצג מספרי טלפון שייצרתי</button>
+
+  </div>
+  <div style="float: right; margin-top: 60px;">
+    <div class="input-group input-group-sm mb-3"
+      style="width: 250px;float: right; margin-right: 60px;  box-sizing: border-box;">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">חפש לפי שם</span>
+      </div>
+      <input type="text" [(ngModel)]="nameforSearch" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm">
+
+      <button (click)="changeValue()">חפש</button>
+
+    </div>
+
+
+    <div class="input-group input-group-sm mb-3"
+      style="width: 250px ;box-sizing: border-box; float: left; margin-right: 20px;">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">חפש לפי מספר ליד</span>
+      </div>
+      <input [(ngModel)]="id1" type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-sm">
+      <button (click)="changeValue1()">חפש</button>
+
+    </div>
+
+  </div>
+
+
+  <div *ngIf="!degel" style="margin-left:47%; ">
+    <div style="height: 400px; background-color: white;"></div>
+    <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <div class="spinner-grow text-danger" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <div class="spinner-grow text-info" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+  </div>
+  <div *ngIf="degel">
+
+
+
+    <div style="float: left;">
+      <button style="width: 220px; margin-left: 60px; margin-top: 50px; " type="button" mdbBtn color="default"
+        class="relative waves-light" (click)="updateList()" mdbWavesEffect>אפס נתוני חיפוש</button>
+    </div>
+    <div style="width: 1000px;margin:auto">
+      <table mdbTable hover="true" style="text-align: right;">
+        <thead class="unique-color-dark white-text">
+          <tr>
+            <th>מספר ליד</th>
+            <th>שם פרטי</th>
+            <th>שם משפחה</th>
+            <th>מספר טלפון 1</th>
+            <th> מספר טלפון 2</th>
+            <th>מייל</th>
+            <th>סטטוס</th>
+            <th>סוג</th>
+            <th>תאריך יצירה</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample" mdbWavesEffect
+            mdbTableCol *ngFor="let item of phoneNUmberForShow" [routerLink]="['/lead',item.id,null]">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.firstName}}</td>
+            <td>{{item.lastName}}</td>
+            <td>{{item.phone}}</td>
+            <td>{{item.phone2}}</td>
+            <td>{{item.mail}}</td>
+            <td>{{item.status|showStatusPhone:item.status}}</td>
+            <td>{{item.type|showTypePhone:item.type}}</td>
+
+            <td>{{item.creationDate|date:'dd/MM/yyyy'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

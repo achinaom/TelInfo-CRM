@@ -1,0 +1,143 @@
+<section id="contact" class="my-5 pt-4 contact-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="h1 font-weight-bold text-uppercase mb-5" style="text-align: right;">צור קשר</h2>
+        <!-- Form with header -->
+        <div class="card">
+          <!-- Grid row -->
+          <div class="row">
+            <!-- Grid column -->
+            <div class="col-lg-8">
+              <div class="card-body form">
+                <!-- Header -->
+                <h3 class="mt-4"><i class="fas fa-envelope pr-2"></i>כתוב לנו את ההודעה שלך וניצור עמך קשר בהקדם</h3>
+                <p style="direction: rtl;text-align: right;">שים לב!<br>השדות המסומנים בכוכבית הינם שדות חובה</p>
+                <!-- Grid row -->
+                <div class="row">
+                  <!-- Grid column -->
+                  <div class="col-md-6">
+                    <div class="md-form mb-0" style="text-align: right;">
+                      <input type="text" [(ngModel)]="name" id="form-contact-name" class="form-control"
+                        style="direction: rtl;">
+                      <label for="form-contact-name" class="">השם שלך</label>
+                    </div>
+                  </div>
+                  <!-- Grid column -->
+                  <!-- Grid column -->
+                  <div class="col-md-6">
+                    <div class="md-form mb-0">
+                      <!-- <input type="text"  id="form-contact-email" class="form-control"> -->
+                      <input #mail1="ngModel" [(ngModel)]="mail" type="text" class="form-control"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                      <div *ngIf="mail1.invalid && (mail1.dirty || mail1.touched) ">
+                        <div class="alert-danger" *ngIf="mail1.errors.pattern">אנא הזן כתובת מייל תקינה! </div>
+                        <div class="alert-danger" *ngIf="mail1.errors.required">שדה חובה </div>
+                      </div>
+                      <label for="form-contact-email" class="">*המייל שלך</label>
+                    </div>
+                  </div>
+                  <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+                <!-- Grid row -->
+                <div class="row">
+                  <!-- Grid column -->
+                  <div class="col-md-6">
+                    <div class="md-form mb-0">
+                      <!-- <input type="text" id="form-contact-phone" class="form-control"> -->
+                      <input #phone11="ngModel" [(ngModel)]="phone" type="text" required class="form-control"
+                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" maxlength="10"
+                        pattern="[0-9]*">
+                      <div *ngIf="phone11.invalid && (phone11.dirty || phone11.touched) ">
+                        <div class="alert-danger" *ngIf="phone11.errors.pattern">אנא הזן מספר טלפון תקין! </div>
+                        <div class="alert-danger" *ngIf="phone11.errors.required">שדה חובה</div>
+                      </div>
+                      <label for="form-contact-phone" class="">*הפלפון שלך</label>
+                    </div>
+                  </div>
+                  <!-- Grid column -->
+                  <div class="col-md-6">
+                    <div class="md-form mb-0">
+                      <input [(ngModel)]="company_name" type="text" id="form-contact-company" class="form-control">
+                      <label for="form-contact-company" class="">החברה שלך</label>
+                    </div>
+                  </div>
+                  <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+                <div class="row">
+                  <!-- Grid column -->
+                  <div class="col-md-12">
+                    <div class="md-form mb-0">
+                      <textarea [(ngModel)]="massage" id="form-contact-message" class="form-control md-textarea"
+                        rows="3"></textarea>
+                      <label for="form-contact-message">ההודעה שלך</label>
+                      <a *ngIf="!phone11.errors&&!mail1.errors" class="btn-floating btn-lg grey-new" (click)='send()'>
+                        <i class="far fa-paper-plane"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+              </div>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-lg-4">
+              <div class="card-body contact text-center h-100 white-text">
+                <h3 class="my-4 pb-2 font-weight-bold">פרטי התחברות</h3>
+                <ul class="text-lg-left list-unstyled ml-4">
+                  <li>
+                    <p style="text-align:right;"><i class="fas fa-map-marker-alt pr-2"></i>ירושלים שבתאי הנגבי 63/11</p>
+                  </li>
+                  <li>
+                    <a href="tel:026760173">
+                      <p style="color: white;text-align:right;"><i class="fas fa-phone pr-2"></i>02-6760173</p>
+                    </a>
+                  </li>
+                  <div
+                    class="elementor-element elementor-element-e7fa433 elementor-position-right elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box whatsapp-widget"
+                    data-id="e7fa433" data-element_type="widget" data-widget_type="icon-box whatsapp-widget.default"
+                    style="margin-top: 0px;">
+                    <div class="elementor-widget-container">
+                      <a href="https://api.whatsapp.com/send?phone=972502033232&text=" target="_blank">
+                        <div class="elementor-icon-box-wrapper">
+                          <div class="elementor-icon-box-icon">
+                            <span class="elementor-icon elementor-animation-">
+                              <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                            </span>
+                          </div>
+                          <div class="elementor-icon-box-content">
+                            <p class="elementor-icon-box-title" style="text-align: right;">
+                              <span class="properties"
+                                style="color: white;text-align:right; direction: rtl; font-size: 15px;">כתבו לנו</span>
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <p class="elementor-icon-list-item" style="text-align: right;">
+                    <a href="mailto:achinoam.ben.rahamim@gmail.com"><span class="elementor-icon-list-icon">
+                        <i class="fas fa-envelope pr-2"></i> </span>
+                      <span class="elementor-icon-list-text" class="properties"
+                        style="color: white;text-align:right; font-size: 15px;"> achinoam.ben.rahamim@gmail.com</span>
+                    </a>
+                  </p>
+                </ul>
+                <hr class="hr-light my-4">
+              </div>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+        <!-- Form with header -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section:  -->
