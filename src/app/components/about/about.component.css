@@ -5,11 +5,11 @@
 body{
     background-color: #fe7263;
 }
-#x1{background-image: url("C:\Users\1\Downloads\istockphoto-1002118226-612x612.jpg");}
-#x2{background-image: url("C:\Users\1\Downloads\istockphoto-888090254-612x612.jpg");}
-#x3{background-image: url("C:\Users\1\Downloads\istockphoto-1259086543-612x612.jpg");}
-#x4{background-image: url("C:\Users\1\Downloads\istockphoto-1131267600-612x612.jpg");}
-#x5{background-image: url("C:\Users\1\Downloads\istockphoto-1133471979-612x612.jpg");}
+#x1{background-image: url("http://localhost:4200/assets/istockphoto-1002118226-612x612.jpg");}
+#x2{background-image: url("http://localhost:4200/assets/istockphoto-888090254-612x612.jpg");}
+#x3{background-image: url("http://localhost:4200/assets/istockphoto-1259086543-612x612.jpg");}
+#x4{background-image: url("http://localhost:4200/assets/istockphoto-1131267600-612x612.jpg");}
+#x5{background-image: url("http://localhost:4200/assets/istockphoto-1133471979-612x612.jpg");}
 .main{
     height: 100%;
     width: 100%;

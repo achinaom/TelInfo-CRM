@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,11 +14,12 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 
-<body style="background-color: white;">
+<body style="background-color: white;" >
 	<div class="login-form" style="width: 500px; text-align: center;">
 		<form (ngSubmit)="login()" action="/examples/actions/confirmation.php" method="post" #myForm="ngForm"
 			class="container">
 			<h2 class="h1 font-weight-bold text-uppercase mb-4">התחברות</h2>
+			
 			<mdb-navbar-brand>
 				<img style="margin-left: 50px;" class="logo navbar-brand" src="http://localhost:4200/assets/logo22.png">
 			</mdb-navbar-brand>
@@ -42,5 +44,4 @@
 		</form>
 	</div>
 </body>
-
 </html>
